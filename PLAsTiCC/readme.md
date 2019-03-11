@@ -144,7 +144,43 @@ A key to successful non-linear stacking is to avoid overfitting. I have found tw
 
 - Make the 2nd level model simpler. For example, my 1st level lgb use depth of 7 and 3. In 2nd level lgb, the depth is always 1. The 1st level MLP has 4 layers but the 2nd level MLP only has 1 layer. And again, mysteriously, now it is my own TF MLP at 2nd level that is always better than the keras counterpart. In the end I just average the lgb/xgb and nn level 2 predictions with equal weights.
 
+## 9th solution
 
+https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75316
+
+https://www.kaggle.com/meaninglesslives/a-slightly-better-nn-arch-and-some-tricks
+
+## 11th solution
+
+https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75174
+
+## 12th solution
+
+https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75237
+
+## 13th solution
+
+https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75134
+
+## 14th solution
+
+https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75054
+
+https://github.com/btrotta/kaggle-plasticc
+
+## 19th solution
+
+https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75167
+
+## 20th solution 
+
+https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75262
+
+# 21st solution
+
+https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75156
+
+https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75140
 
 
 
