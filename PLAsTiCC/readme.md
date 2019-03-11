@@ -176,7 +176,7 @@ https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75167
 
 https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75262
 
-# 21st solution
+## 21st solution
 
 https://www.kaggle.com/c/PLAsTiCC-2018/discussion/75156
 
