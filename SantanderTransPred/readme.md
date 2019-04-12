@@ -48,6 +48,30 @@ https://github.com/KazukiOnodera/santander-customer-transaction-prediction/blob/
 
 - count encoding + count round encoding 
 
+## 5th solution by KazAnova * Kun Hao: https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88897#latest-514440 & https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88929#latest-515106
+
+**Solution overview:**
+
+**source code:** 
+
+https://github.com/tnmichael309/Kaggle-Santander-Customer-Transaction-Prediction-5th-Place-Partial-Solution
+
+- NNs perfomed better than lightgbms, but needed an input shape of Input(shape=(200,2)). The first one represents the features and the second the unique count associated with these features. 
+
+- For lightgbm it helped using minmaxscaler of (-4,4) on the original features and then doing Xn** countn where the count is clipped between 1 and 3
+
+- Stacking added around +0.001. NN was significantly better at stacking than any other method.
+
+- NN: where with input shape=(200,), and a following dense layer, say D-1, we are using D-1 to create feature interactions. If the input shape=(200, 1) and a dense layer, say D-2, as we could observe from the model summary (in keras), D-2 is a dense layer shared among those 200 features, i.e., NN is now using D-2 to seek for a common representation across these 200 features, which turns out to be more effective. 
+
+- Now, the 200 additional magic features, how should we combine them? If we use input shape=(400,1), then all the features are assumed to be lack of interactions between each other. But since those magic features are created based on the raw features, interaction between raw-magic feature could be interesting, and turns out to be effective after experiments. So our NN's input shape turns out to be (200, 2), with (200,1) from raw and the other (200,1) from magic. 
+
+- Adding a data loader with on-the-fly augmentation. 
+
+
+
+
+
 ## 7th solution by The Zoo: https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/89023#latest-514533
 
 **Solution overview:**
