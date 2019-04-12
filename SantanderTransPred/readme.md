@@ -48,6 +48,32 @@ https://github.com/KazukiOnodera/santander-customer-transaction-prediction/blob/
 
 - count encoding + count round encoding 
 
+## 3rd solution by Nawid: https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88902#latest-514106
+
+**Solution overview:**
+
+**source code:** https://www.kaggle.com/nawidsayed/lightgbm-and-cnn-3rd-place-solution
+
+- I calculate the unique counts of each faeture seaparately. Based on that I also calculate the density by smoothing the counts and also the deviation as counts/density.
+
+- Many public kernels indicated that the features are independent, conditional on the target. For this reason I train seperate trees for each feature and their respective counts. Using a simple average (of the square root) of all tree predictors achieves around 0.9225 / 0.9205 on public/private LB.
+
+- Use CNN to blend the predictors: I choose the architecure in a way which would ensure feature independence up until the last dense layer. In order to minimize overfitting and utilize the similarity of patterns across different var_x I used convolutional layers. The convolutions are performed across different var_x and at any point the filters only have a single var and their respective features in their field of view. Batch normalization is a great regularizer here and very crucial for the success of the model. The model has a total of 2.8K trainable parameters which is sufficiently low to prevent overfitting. I verified this by splitting train data into train / test with use_experimental = True at the top of the kernel and using test AUC as a gauge. The final prediction is the average of the 7 CNNs trained on every fold.
+
+
+
+
+
+## 4th solution by Evgeny: https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88970#latest-514923
+
+**Solution overview:**
+
+- I put all vars together in one column (200000*200, 1), add counts as second column, name of features as 3rd categorical column and used LightGBM. AUC for this model was not very high - near .53, but product of all predictions grouped by ID returned .9258 locally and .924 on LB. With other aggregates of predictions (min, max, std etc) we got more by logistical regression model.
+
+- The reason why this approach was the best is the data. All vars had no interactions between each other, but GBM found some fake interactions. With long model it became much harder to find inter-vars interactions, boosting mainly used only feature + count pairs.
+
+
+
 ## 5th solution by KazAnova * Kun Hao: https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88897#latest-514440 & https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88929#latest-515106
 
 **Solution overview:**
